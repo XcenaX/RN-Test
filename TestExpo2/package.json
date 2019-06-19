@@ -1,0 +1,61 @@
+{
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject",
+    "test": "jest --watchAll"
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "dependencies": {
+    "@expo/samples": "~3.0.0",
+    "@expo/vector-icons": "^10.0.1",
+    "@tinymce/tinymce-react": "^3.2.0",
+    "expo": "^33.0.0",
+    "expo-asset": "^5.0.0",
+    "expo-constants": "~5.0.1",
+    "expo-firebase-analytics": "^2.0.0",
+    "expo-firebase-app": "^2.0.0",
+    "expo-firebase-auth": "^2.0.0",
+    "expo-firebase-crashlytics": "^2.0.0",
+    "expo-firebase-database": "^2.0.0",
+    "expo-firebase-firestore": "^2.0.0",
+    "expo-firebase-functions": "^2.0.0",
+    "expo-firebase-instance-id": "^2.0.0",
+    "expo-firebase-invites": "^2.0.0",
+    "expo-firebase-links": "^2.0.0",
+    "expo-firebase-messaging": "^2.0.0",
+    "expo-firebase-notifications": "^2.0.0",
+    "expo-firebase-performance": "^2.0.0",
+    "expo-firebase-remote-config": "^2.0.0",
+    "expo-firebase-storage": "^2.0.0",
+    "expo-font": "^5.0.0",
+    "expo-sqlite": "^5.0.1",
+    "expo-web-browser": "^5.0.0",
+    "expokit": "^33.0.2",
+    "firebase-tools": "^6.11.0",
+    "meteor-mongodb-collections": "^0.0.11",
+    "meteor-native-mongo": "^0.2.0",
+    "meteor-node-stubs": "^0.4.1",
+    "react": "16.8.3",
+    "react-dom": "^16.8.6",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
+    "react-native-device-info": "^2.1.1",
+    "react-native-markdown-renderer": "^3.2.8",
+    "react-native-meteor": "^1.4.0",
+    "react-native-network-info": "^5.0.1",
+    "react-native-unimodules": "^0.4.0",
+    "react-native-web": "^0.11.4",
+    "react-navigation": "^3.11.0",
+    "tinymce": "^5.0.7"
+  },
+  "devDependencies": {
+    "babel-preset-expo": "^5.1.0",
+    "jest-expo": "^33.0.0"
+  },
+  "private": true
+}
