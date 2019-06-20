@@ -35,7 +35,10 @@ class LoginScreen extends React.Component{
     onLoginPress = () => {
         Meteor.loginWithPassword(this.state.email, this.state.password, (err)=>{
           if (err) {
-          this.setState({ error: error.reason });
+          this.setState({ error: err.reason });
+          }
+          else{
+            this.props.navigation.navigate('Home');
           }
         });
       }
@@ -79,10 +82,9 @@ LoginScreen.navigationOptions = {
 };
 
 const container =  withTracker(params => {
-  Meteor.subscribe('getAllUsers')  
+Meteor.subscribe('currentUser')
   return {
-    Users: Meteor.collection('Users').find({}),
-    user: Meteor.user(),
+    user: Meteor.user()
   };
 })(LoginScreen);
 
