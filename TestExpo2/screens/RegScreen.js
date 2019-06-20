@@ -110,9 +110,8 @@ RegScreen.navigationOptions = {
 
 
 const container =  withTracker(params => {
-  Meteor.subscribe('getAllUsers')
-  return {
-    Users: Meteor.collection('Users').find({}),
+  Meteor.subscribe('currentUser')
+  return {    
     user: Meteor.user(),
   };
 })(RegScreen);
