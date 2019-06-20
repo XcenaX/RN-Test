@@ -61,10 +61,9 @@ LinksScreen.navigationOptions = {
 };
 
 const container =  withTracker(params => {
-  Meteor.subscribe('getAllUsers')
-  return {
-    Users: Meteor.collection('Users').find({}),
-    user: Meteor.user(),
+  Meteor.subscribe('currentUser')
+  return {    
+    user: Meteor.user()
   };
 })(LinksScreen);
 
