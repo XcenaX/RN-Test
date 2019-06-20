@@ -33,57 +33,60 @@ class HomeScreen extends React.Component {
    const apiKey = "ef90a3f31803944920fba94284bbf9a8";
    const AstanaId = "1526273";
    const URL = "http://api.openweathermap.org/data/2.5/weather?id="+AstanaId+"&appid="+apiKey;
-   // fetch(URL).then(res => res.json()).then(json => {
-   //   this.setState({ weatherData: json});
-   //    const iconURL = "http://openweathermap.org/img/w/" + this.state.weatherData.weather[0].icon + ".png";
-   //    const currentState = this.state.weatherData.main.temp;
-   //    const minState = this.state.weatherData.main.temp_min;
-   //    const maxState = this.state.weatherData.main.temp_max;
-   //    const windSpeedState = this.state.weatherData.wind.speed;
-   //    const descriptionState = this.state.weatherData.weather[0].description;
-   //
-   //    this.setState({ iconUrl: {iconURL}});
-   //    this.setState({ current: {currentState}});
-   //    this.setState({ min: {minState}});
-   //    this.setState({ max: {maxState}});
-   //    this.setState({ windSpeed: {windSpeedState}});
-   //    this.setState({ description: {descriptionState}});
-   //    console.log(this.state.weatherData);
-   //    console.log(this.state.iconUrl);
-   //  });
+   fetch(URL).then(res => res.json()).then(json => {
+     this.setState({ weatherData: json});
+      const iconURL = "http://openweathermap.org/img/w/" + this.state.weatherData.weather[0].icon + ".png";
+      const currentState = this.state.weatherData.main.temp;
+      const minState = this.state.weatherData.main.temp_min;
+      const maxState = this.state.weatherData.main.temp_max;
+      const windSpeedState = this.state.weatherData.wind.speed;
+      const descriptionState = this.state.weatherData.weather[0].description;
+
+      this.setState({ iconUrl: {iconURL}});
+      this.setState({ current: {currentState}});
+      this.setState({ min: {minState}});
+      this.setState({ max: {maxState}});
+      this.setState({ windSpeed: {windSpeedState}});
+      this.setState({ description: {descriptionState}});
+      console.log(this.state.weatherData);
+      console.log(this.state.iconUrl);
+    });
  }
   static navigationOptions = {
           header: null
       }
       HeaderContent(){
-        if(Meteor.user() === null){
+        if(!this.props.user){
           return(
             <View style={{flexDirection:'row' , flex:1, alignItems:'center'}}>
               <Button style={styles.headerButton} title="Вход" onPress={() => this.props.navigation.navigate('Login')}/>
-              <Button style={styles.headerButton} title="Регистрация" onPress={() => this.props.navigation.navigate('Reg')}/>
+              <Button style={styles.headerButton} title="Регистрация" onPress={() => this.props.navigation.navigate('Console')}/>
             </View>
           );
         }
         return(
           <View style={{flexDirection:'row' , flex:1, alignItems:'center'}}>
             <Button style={styles.headerButton} title='Панель' onPress={() => this.props.navigation.navigate('Console')}/>
-            <Button style={styles.headerButton} title='Выход' onPress={Meteor.logout()}/>
+            <Button style={styles.headerButton} title='Выход' onPress={() => Meteor.logout()}/>
           </View>
         );
       }
       MarkdownText(){
-        if(Meteor.user() === null){
+        if(!this.props.user){
           return(
             <View>
             <Markdown>Войдите чтобы увидеть содержимое!</Markdown>
             </View>
           );
         }
+        else{
+          console.log("USER : "+this.props.user);
         return(
           <View>
           <Markdown>{this.props.user.profile.text}</Markdown>
           </View>
         );
+      }
       }
   render() {
     return(
@@ -117,9 +120,9 @@ class HomeScreen extends React.Component {
 }
 
 const container =  withTracker(params => {
-  Meteor.subscribe('getAllUsers')
+  Meteor.subscribe('currentUser')
+
   return {
-    Users: Meteor.collection('Users').find({}),
     user: Meteor.user(),
   };
 })(HomeScreen);
@@ -191,3 +194,4 @@ const styles = StyleSheet.create({
   }
 
 });
+
