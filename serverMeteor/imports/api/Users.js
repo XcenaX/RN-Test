@@ -12,11 +12,7 @@ Meteor.methods({
     Meteor.users.update({_id: this.userId}, {$set: {"profile.text": textInput}});
   },
 })
-
-Meteor.publish( 'getAllUsers', () => {
-  return Meteor.users.find({})
+Meteor.publish('currentUser',()=>{
+  console.log("id: "+this.userId);
+  return this.userId == undefined ? null : Meteor.users.find({_id:this.userId}, {limit:1, fields: {profile:1}});
 })
-// Meteor.publish('currentUser',()=>{
-//   console.log("id: "+this.userId);
-//   return Meteor.users.find({}, {fields: {_id: this.userId}});
-// })
